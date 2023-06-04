@@ -35,7 +35,7 @@ octokit.request("GET /repos/{owner}/{repo}/issues", {
 })
 .then((issues) => {
   console.log('here');
-  const jsonContent = JSON.stringify(issues.data);
+  const jsonContent = JSON.stringify(issues);
   content = Buffer.from(jsonContent, 'utf-8').toString('base64');
   console.log(content);
 
