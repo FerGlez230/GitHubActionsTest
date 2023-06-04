@@ -10,7 +10,7 @@ const repo = 'GitHubActionsTest';
 const branch = 'main'; // Replace with your GitHub Pages branch name
 
 const content = 'Hello, GitHub Pages!'; // The content to be written to the file
-const dateISOString = new Date().toISOString
+const dateISOString = new Date().toISOString();
 const path = dateISOString.slice(0, dateISOString.indexOf('T'))+'.txt'; // The path and name of the file to be created
 
 /*octokit.repos.createOrUpdateFileContents({
