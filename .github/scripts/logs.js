@@ -51,6 +51,7 @@ octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
     email: 'ferglez@gmail.com'
   },
   content: 'bXkgbmV3IGZpbGUgY29udGVudHM=',
+  sha: '68c7bfead347220cec355071d8cb8eb824a81fcf',
   headers: {
     'X-GitHub-Api-Version': '2022-11-28'
   }
