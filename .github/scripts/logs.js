@@ -45,6 +45,7 @@ octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
   owner,
   repo,
   path,
+  sha: 'bf2b116bb316f0d79d4e0a8ae7b1d9a960eb2f56',
   message: 'Get data from API',
   committer: {
     name: owner,
