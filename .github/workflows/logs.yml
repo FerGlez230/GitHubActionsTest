@@ -1,5 +1,6 @@
 name: Run JavaScript File
-
+env:
+    TOKEN: ${{ secrets.GITHUB_TOKEN }}
 on:
   push:
     branches:
