@@ -43,7 +43,6 @@ octokit.request("GET /repos/{owner}/{repo}/issues", {
     owner,
     repo,
     path,
-    sha: '0d5a690c8fad5e605a6e8766295d9d459d65de42',
     message: 'Get data from API',
     committer: {
       name: owner,
