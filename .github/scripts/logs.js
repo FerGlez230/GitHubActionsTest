@@ -8,7 +8,7 @@ const owner = 'FerGlez230';
 const repo = 'GitHubActionsTest';
 const branch = 'main'; // Replace with your GitHub Pages branch name
 
-const content = 'Hello, GitHub Pages!'; // The content to be written to the file
+let content = 'Hello, GitHub Pages!'; // The content to be written to the file
 const dateISOString = new Date().toISOString();
 const path = dateISOString.slice(0, dateISOString.indexOf('T'))+'.txt'; // The path and name of the file to be created
 
@@ -35,6 +35,10 @@ octokit.request("GET /repos/{owner}/{repo}/issues", {
 })
 .then((issues) => {
   console.log('here', issues.data);
+  const jsonContent = JSON.stringify(response.data);
+  content = Buffer.from(jsonContent, 'utf-8').toString('base64');
+  console.log(content);
+
 })
 .catch(error => {
   console.error('Error:', error);
@@ -51,7 +55,7 @@ octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
     name: owner,
     email: 'fergle230z@gmail.com'
   },
-  content: 'bXkgbmV3IGZpbGUgY29udGVudHM=',
+  content,
   headers: {
     'X-GitHub-Api-Version': '2022-11-28'
   }
