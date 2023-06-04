@@ -4,7 +4,10 @@ on:
   push:
     branches:
       - main # Modify to match your repository's default branch
-
+permissions:
+  contents: write
+  pages: write
+  id-token: write
 jobs:
   run-js-file:
     runs-on: ubuntu-latest
