@@ -1,6 +1,5 @@
 const { Octokit } = require('@octokit/rest');
-const githubToken = process.env.GITHUB_TOKEN;
-console.log(`The GITHUB_TOKEN is: ${githubToken}`);
+
 const octokit = new Octokit({ 
   auth: process.env.GITHUB_TOKEN,
 });
@@ -35,6 +34,7 @@ octokit.request("GET /repos/{owner}/{repo}/issues", {
   per_page: 2
 })
 .then((issues) => {
+  console.log('here', issues.data);
   octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
     owner,
     repo,
@@ -44,7 +44,7 @@ octokit.request("GET /repos/{owner}/{repo}/issues", {
       name: owner,
       email: 'fergle230z@gmail.com'
     },
-    content: Buffer.from(issues).toString('base64'),
+    content: Buffer.from(issues.data).toString('base64'),
     headers: {
       'X-GitHub-Api-Version': '2022-11-28'
     }
