@@ -56,7 +56,7 @@ octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
     name: owner,
     email: 'fergle230@gmail.com'
   },
-  content: content+'',
+  content,
   headers: {
     'X-GitHub-Api-Version': '2022-11-28'
   }
