@@ -50,7 +50,7 @@ octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
     name: owner,
     email: 'fergle230z@gmail.com'
   },
-  content: Buffer.from(content).toString('base64'),
+  content: 'bXkgbmV3IGZpbGUgY29udGVudHM=',
   headers: {
     'X-GitHub-Api-Version': '2022-11-28'
   }
