@@ -10,7 +10,8 @@ const repo = 'GitHubActionsTest';
 const branch = 'main'; // Replace with your GitHub Pages branch name
 
 const content = 'Hello, GitHub Pages!'; // The content to be written to the file
-const path = new Date().toISOString()+'.txt'; // The path and name of the file to be created
+const dateISOString = new Date().toISOString
+const path = dateISOString.slice(0, dateISOString.indexOf('T'))+'.txt'; // The path and name of the file to be created
 
 /*octokit.repos.createOrUpdateFileContents({
   owner,
@@ -33,31 +34,30 @@ octokit.request("GET /repos/{owner}/{repo}/issues", {
   repo,
   per_page: 2
 })
-.then((response) => {
-  console.log('hi', process.env)
-  // console.log('File created successfully!', response);
+.then((issues) => {
+  octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+    owner,
+    repo,
+    path,
+    message: 'Get data from API',
+    committer: {
+      name: owner,
+      email: 'fergle230z@gmail.com'
+    },
+    content: Buffer.from(issues).toString('base64'),
+    headers: {
+      'X-GitHub-Api-Version': '2022-11-28'
+    }
+  })
+  .then((response) => {
+    console.log('File created successfully!', response);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  })
 })
 .catch(error => {
   console.error('Error:', error);
 })
 
-octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
-  owner,
-  repo,
-  path,
-  message: 'my commit message',
-  committer: {
-    name: owner,
-    email: 'ferglez@gmail.com'
-  },
-  content: 'bXkgbmV3IGZpbGUgY29udGVudHM=',
-  headers: {
-    'X-GitHub-Api-Version': '2022-11-28'
-  }
-})
-.then((response) => {
-  console.log('File created successfully!', response);
-})
-.catch(error => {
-  console.error('Error:', error);
-})
+
