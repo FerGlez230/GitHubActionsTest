@@ -37,7 +37,7 @@ octokit.request("GET /repos/{owner}/{repo}/issues", {
   console.log('here');
   const jsonContent = JSON.stringify(issues);
   // content = Buffer.from('jsonContent').toString('base64');
-  content = btoa('jsonContent');
+  content = btoa(jsonContent);
   console.log(content);
   octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
     owner,
