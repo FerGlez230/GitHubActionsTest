@@ -39,31 +39,30 @@ octokit.request("GET /repos/{owner}/{repo}/issues", {
   // content = Buffer.from('jsonContent').toString('base64');
   content = btoa('jsonContent');
   console.log(content);
-
+  octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
+    owner,
+    repo,
+    path,
+    sha: '0d5a690c8fad5e605a6e8766295d9d459d65de42',
+    message: 'Get data from API',
+    committer: {
+      name: owner,
+      email: 'fergle230@gmail.com'
+    },
+    content,
+    headers: {
+      'X-GitHub-Api-Version': '2022-11-28'
+    }
+  })
+  .then((response) => {
+    console.log('File created successfully!', response);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  })
 })
 .catch(error => {
   console.error('Error:', error);
 })
 
 
-octokit.request('PUT /repos/{owner}/{repo}/contents/{path}', {
-  owner,
-  repo,
-  path,
-  sha: '0d5a690c8fad5e605a6e8766295d9d459d65de42',
-  message: 'Get data from API',
-  committer: {
-    name: owner,
-    email: 'fergle230@gmail.com'
-  },
-  content,
-  headers: {
-    'X-GitHub-Api-Version': '2022-11-28'
-  }
-})
-.then((response) => {
-  console.log('File created successfully!', response);
-})
-.catch(error => {
-  console.error('Error:', error);
-})
