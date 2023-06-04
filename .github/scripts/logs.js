@@ -1,7 +1,8 @@
 const { Octokit } = require('@octokit/rest');
-
+const githubToken = process.env.GITHUB_TOKEN;
+console.log(`The GITHUB_TOKEN is: ${githubToken}`);
 const octokit = new Octokit({ 
-  auth: process.env.GH_TOKEN,
+  auth: process.env.GITHUB_TOKEN,
 });
 
 const owner = 'FerGlez230';
@@ -33,7 +34,7 @@ octokit.request("GET /repos/{owner}/{repo}/issues", {
   per_page: 2
 })
 .then((response) => {
-  console.log('hi', process.env.GH_TOKEN)
+  console.log('hi', process.env)
   // console.log('File created successfully!', response);
 })
 .catch(error => {
